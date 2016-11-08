@@ -9,10 +9,10 @@ namespace ConfigTransform
 {
     public class Program
     {
-        public static void Main(params string[] args)
+        public static int Main(params string[] args)
         {
             var sourceParm = args.FirstOrDefault(x => x.StartsWith("-src", StringComparison.OrdinalIgnoreCase));
-            var transformParm = args.FirstOrDefault(x => x.StartsWith("-transform", StringComparison.OrdinalIgnoreCase)||x.StartsWith("-trans", StringComparison.OrdinalIgnoreCase));
+            var transformParm = args.FirstOrDefault(x => x.StartsWith("-transform", StringComparison.OrdinalIgnoreCase) || x.StartsWith("-trans", StringComparison.OrdinalIgnoreCase));
             var destParm = args.FirstOrDefault(x => x.StartsWith("-dest", StringComparison.OrdinalIgnoreCase));
 
             try
@@ -29,17 +29,19 @@ namespace ConfigTransform
 
                 using (var xmlTransform = new XmlTransformation(transFile))
                 {
-                    if (xmlTransform.Apply(originalFileXml)==false)
+                    if (xmlTransform.Apply(originalFileXml) == false)
                         throw new Exception("Configuration file transform failure, please confirm the transform file");
 
                     // originalFileXml is now transformed
                     originalFileXml.Save(destFile);
+                    Console.WriteLine("Transform success");
+                    return 0;
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return;
+                return -1;
             }
         }
 
@@ -50,7 +52,7 @@ namespace ConfigTransform
                 throw new Exception($"{paramName} parameter can't be null");
             }
 
-            if (param.IndexOf("=")<0&&param.LastIndexOf("=")!=param.IndexOf("="))
+            if (param.IndexOf("=") < 0 && param.LastIndexOf("=") != param.IndexOf("="))
             {
                 throw new Exception($"invalid format for parameter {paramName}, it should be -parameterName=parameterValue");
             }
