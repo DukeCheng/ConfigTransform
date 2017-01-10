@@ -1,3 +1,4 @@
 #!/bin/sh
+echo "Start Application Configuration File Transform"
 exec /usr/bin/cli /usr/lib/dktools/ConfigTransform.exe "$@"
 
