@@ -1,5 +1,5 @@
 #!/bin/sh
-wget https://github.com/DukeCheng/ConfigTransform/releases/download/v0.1/ConfigTransform.zip -O /tmp/ConfigTransform.zip 
+wget https://github.com/DukeCheng/ConfigTransform/releases/download/v0.2/ConfigTransform.zip -O /tmp/ConfigTransform.zip 
 unzip /tmp/ConfigTransform.zip -d /tmp/ConfigTransform
 mkdir /usr/lib/dktools
 
