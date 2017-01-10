@@ -1,13 +1,14 @@
 #!/bin/sh
 wget https://github.com/DukeCheng/ConfigTransform/releases/download/v0.1/ConfigTransform.zip -O /tmp/ConfigTransform.zip 
-unzip ConfigTransform.zip -d ConfigTransform
+unzip /tmp/ConfigTransform.zip -d /tmp/ConfigTransform
 mkdir /usr/lib/dktools
 
 rm -rf /usr/bin/configtransform
 rm -rf /usr/lib/dktools/ConfigTransform*
 
-cp ConfigTransform/* /usr/lib/dktools/
-cp ConfigTransform/configtransform /usr/bin/
+cp /tmp/ConfigTransform/* /usr/lib/dktools/
+cp /tmp/ConfigTransform/configtransform /usr/bin/
 chmod 700 /usr/bin/configtransform
+rm -rf /tmp/ConfigTransform*
 echo "configtransform install successful"
 
